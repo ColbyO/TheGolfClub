@@ -1,13 +1,11 @@
-package com.backend.Membership;
+package com.backend.models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "members")
 public class Membership {
-	@Id
+    @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
@@ -27,10 +25,10 @@ public class Membership {
     private int phoneNumber;
 
     @Column(name = "start_date")
-    private LocalDate startDate;
+    private String startDate;
 
     @Column(name = "duration")
-    private LocalTime duration;
+    private String duration;
 
     @Column(name = "type")
     private String membershipType;
@@ -43,6 +41,26 @@ public class Membership {
 
     @Column(name = "upcoming_tournament")
     private String upcomingTournaments;
+
+    public Membership(String firstName, String lastName, String address, String email, int phonenumber, String startDate,
+    String duration, String membershipType, String pastTournaments,
+                      String currentTournaments, String upcomingTournaments) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.email = email;
+        this.phoneNumber = phonenumber;
+        this.startDate = startDate;
+        this.duration = duration;
+        this.membershipType = membershipType;
+        this.pastTournaments = pastTournaments;
+        this.currentTournaments = currentTournaments;
+        this.upcomingTournaments = upcomingTournaments;
+    }
+
+    public Membership() {
+        
+    }
 
     public String getFirstName() {
         return firstName;
@@ -84,19 +102,19 @@ public class Membership {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return this.startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalTime getDuration() {
+    public String getDuration() {
         return this.duration;
     }
 
-    public void setDuration(LocalTime duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 

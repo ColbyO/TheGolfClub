@@ -1,26 +1,25 @@
-package com.backend.Tournament;
+package com.backend.models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "tournaments")
-public class Tournament {
-	@Id
+public class Tournaments {
+    @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
     @Column(name = "start_date")
-    private LocalDate startDate;
+    private String startDate;
 
     @Column(name = "end_date")
-    private LocalDate endDate;
+    private String endDate;
 
     @Column(name = "entry_fee")
-    private int fee;
+    private double fee;
 
     @Column(name = "prize")
-    private int prize;
+    private double prize;
 
     @Column(name = "participating")
     private String members;
@@ -28,35 +27,48 @@ public class Tournament {
     @Column(name = "standings")
     private String standings;
 
-    public LocalDate getStart() {
+    public Tournaments(String startDate, String endDate, double fee, double prize, String members, String standings){
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.fee = fee;
+        this.prize = prize;
+        this.members = members;
+        this.standings = standings;
+    }
+
+    public Tournaments() {
+        
+    }
+
+    public String getStart() {
         return this.startDate;
     }
 
-    public void setStart(LocalDate startDate) {
+    public void setStart(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEnd() {
+    public String getEnd() {
         return this.endDate;
     }
 
-    public void setEnd(LocalDate endDate) {
+    public void setEnd(String endDate) {
         this.endDate = endDate;
     }
 
-    public int getFee() {
+    public double getFee() {
         return fee;
     }
 
-    public void setFee(int fee) {
+    public void setFee(double fee) {
         this.fee = fee;
     }
 
-    public int getPrize() {
+    public double getPrize() {
         return this.prize;
     }
 
-    public void setPrize(int prize) {
+    public void setPrize(double prize) {
         this.prize = prize;
     }
 
@@ -74,5 +86,5 @@ public class Tournament {
 
     public void setStandings(String standings) {
         this.standings = standings;
-    }
+    } 
 }
