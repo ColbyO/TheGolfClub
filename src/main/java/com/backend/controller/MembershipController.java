@@ -63,7 +63,7 @@ public class MembershipController {
     public ResponseEntity<Membership> createMembership(@RequestBody Membership membership) {
         try {
             Membership _membershipRepo = membershipRepo
-                    .save(new Membership(membership.getFirstName(),membership.getLastName(), membership.getAddress(), membership.getEmail(), membership.getPhoneNumber(),
+                    .save(new Membership(membership.getId(), membership.getFirstName(),membership.getLastName(), membership.getAddress(), membership.getEmail(), membership.getPhoneNumber(),
                             membership.getStartDate(), membership.getDuration(), membership.getMembershipType(), membership.getPastTournaments(),
                             membership.getCurrentTournaments(), membership.getUpcomingTournaments()));
             return new ResponseEntity<>(_membershipRepo, HttpStatus.CREATED);

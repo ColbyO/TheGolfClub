@@ -48,7 +48,7 @@ public class TournamentController {
     public ResponseEntity<Tournaments> postTournament(@RequestBody Tournaments tournament) {
         try{
             Tournaments _tournament = tournamentRepo
-                            .save(new Tournaments(tournament.getStart(), tournament.getEnd(), tournament.getFee(),
+                            .save(new Tournaments(tournament.getId(), tournament.getStart(), tournament.getEnd(), tournament.getFee(),
                             tournament.getPrize(), tournament.getMembers(), tournament.getStandings()));
             return new ResponseEntity<>(_tournament, HttpStatus.CREATED);
         } catch (Exception e) {

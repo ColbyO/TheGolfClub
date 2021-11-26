@@ -42,9 +42,10 @@ public class Membership {
     @Column(name = "upcoming_tournament")
     private String upcomingTournaments;
 
-    public Membership(String firstName, String lastName, String address, String email, int phonenumber, String startDate,
+    public Membership(long id, String firstName, String lastName, String address, String email, int phonenumber, String startDate,
     String duration, String membershipType, String pastTournaments,
                       String currentTournaments, String upcomingTournaments) {
+        this.id = id;                          
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -60,6 +61,14 @@ public class Membership {
 
     public Membership() {
         
+    }
+
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
