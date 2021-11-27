@@ -1,152 +1,82 @@
 package com.backend.models;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "members")
+@Table(name = "membership")
 public class Membership {
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
 	private long id;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "phone")
-    private int phoneNumber;
-
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @Column(name = "start_date")
-    private String startDate;
+    private LocalDate startDate;
 
+    @JsonFormat(pattern = "hh-mm-ss")
+    @DateTimeFormat(pattern = "hh-mm-ss")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @Column(name = "duration")
-    private String duration;
+    private LocalTime duration;
 
-    @Column(name = "type")
-    private String membershipType;
-
-    @Column(name = "current_tournament")
-    private String currentTournaments;
+    @OneToOne
+    private MembershipType membershipType;
     
-    @Column(name = "past_tournament")
-    private String pastTournaments;
-
-    @Column(name = "upcoming_tournament")
-    private String upcomingTournaments;
-
-    public Membership(String firstName, String lastName, String address, String email, int phonenumber, String startDate,
-    String duration, String membershipType, String pastTournaments,
-                      String currentTournaments, String upcomingTournaments) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.email = email;
-        this.phoneNumber = phonenumber;
+    public Membership(long id, LocalDate startDate, LocalTime duration, MembershipType membershipType) {
+        this.id = id;
         this.startDate = startDate;
         this.duration = duration;
         this.membershipType = membershipType;
-        this.pastTournaments = pastTournaments;
-        this.currentTournaments = currentTournaments;
-        this.upcomingTournaments = upcomingTournaments;
     }
 
     public Membership() {
         
     }
 
-    public String getFirstName() {
-        return firstName;
+    public long getId() {
+        return this.id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setid(long id) {
+        this.id = id;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getPhoneNumber() {
-        return this.phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return this.startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public String getDuration() {
+    public LocalTime getDuration() {
         return this.duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(LocalTime duration) {
         this.duration = duration;
     }
 
-    public String getMembershipType() {
+    public MembershipType getMembershipType() {
         return this.membershipType;
     }
 
-    public void setMembershipType(String membershipType) {
+    public void setMembershipType(MembershipType membershipType) {
         this.membershipType = membershipType;
     }
 
-    public String getCurrentTournaments() {
-        return this.currentTournaments;
-    }
-
-    public void setCurrentTournaments(String currentTournaments) {
-        this.currentTournaments = currentTournaments;
-    }
-
-    public String getPastTournaments() {
-        return this.pastTournaments;
-    }
-
-    public void setPastTournaments(String pastTournaments) {
-        this.pastTournaments = pastTournaments;
-    }
-
-    public String getUpcomingTournaments() {
-        return this.upcomingTournaments;
-    }
-
-    public void setUpcomingTournaments(String upcomingTournaments) {
-        this.upcomingTournaments = upcomingTournaments;
-    }
 }

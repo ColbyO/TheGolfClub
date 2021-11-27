@@ -1,5 +1,6 @@
-package com.backend.controller;
+/*package com.backend.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,16 +28,16 @@ import com.backend.repositories.MembershipRepository;
 @RequestMapping("/api")
 public class MembershipController {
     @Autowired(required = false)
-    MembershipRepository membershipRepo;
+    MembershipRepository Repo;
 
-    @GetMapping("/members")
-	public ResponseEntity<List<Membership>> getAllMembers(@RequestParam(required = false) String firstName) {
+    @GetMapping("/membership")
+	public ResponseEntity<List<Membership>> getAllMembers(@RequestParam(required = false) LocalDate startDate) {
 		try {
 			List<Membership> members = new ArrayList<Membership>();
-			if (firstName == null)
-                membershipRepo.findAll().forEach(members::add);
+			if (startDate == null)
+                Repo.findAll().forEach(members::add);
 			else
-                membershipRepo.findByFirstName(firstName).forEach(members::add);
+                Repo.findByStartDate(startDate).forEach(members::add);
 
 			if (members.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -50,7 +51,7 @@ public class MembershipController {
 
     @GetMapping("/membership/{id}")
 	public ResponseEntity<Membership> getMembershipsById(@PathVariable("id") long id) {
-		Optional<Membership> membershipData = membershipRepo.findById(id);
+		Optional<Membership> membershipData = Repo.findById(id);
 
 		if (membershipData.isPresent()) {
 			return new ResponseEntity<>(membershipData.get(), HttpStatus.OK);
@@ -62,10 +63,8 @@ public class MembershipController {
     @PostMapping("/membership")
     public ResponseEntity<Membership> createMembership(@RequestBody Membership membership) {
         try {
-            Membership _membershipRepo = membershipRepo
-                    .save(new Membership(membership.getFirstName(),membership.getLastName(), membership.getAddress(), membership.getEmail(), membership.getPhoneNumber(),
-                            membership.getStartDate(), membership.getDuration(), membership.getMembershipType(), membership.getPastTournaments(),
-                            membership.getCurrentTournaments(), membership.getUpcomingTournaments()));
+            Membership _membershipRepo = Repo
+                    .save(new Membership(membership.getId(), membership.getStartDate(), membership.getDuration(), membership.getMembershipType()));
             return new ResponseEntity<>(_membershipRepo, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -74,33 +73,27 @@ public class MembershipController {
 
     @PutMapping("/membership/{id}")
     public ResponseEntity<Membership> updatedMembership(@PathVariable("id") long id, @RequestBody Membership membership) {
-        Optional<Membership> membershipInfo = membershipRepo.findById(id);
+        Optional<Membership> membershipInfo = Repo.findById(id);
         if (membershipInfo.isPresent()) {
             Membership _membership = membershipInfo.get();
-            _membership.setFirstName(membership.getFirstName());
-            _membership.setLastName(membership.getLastName());
-            _membership.setAddress(membership.getAddress());
-            _membership.setEmail(membership.getEmail());
-            _membership.setPhoneNumber(membership.getPhoneNumber());
+            _membership.setid(membership.getId());
             _membership.setStartDate(membership.getStartDate());
             _membership.setDuration(membership.getDuration());
             _membership.setMembershipType(membership.getMembershipType());
-            _membership.setCurrentTournaments(membership.getCurrentTournaments());
-            _membership.setPastTournaments(membership.getPastTournaments());
-            _membership.setUpcomingTournaments(membership.getUpcomingTournaments());
-            return new ResponseEntity<>(membershipRepo.save(_membership), HttpStatus.OK);
+            return new ResponseEntity<>(Repo.save(_membership), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @DeleteMapping("/Membership/{id}")
+    @DeleteMapping("/membership/{id}")
     public ResponseEntity<Membership> deletedMembership(@PathVariable("id") long id){
         try{
-            membershipRepo.deleteById(id);
+            Repo.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
+*/
