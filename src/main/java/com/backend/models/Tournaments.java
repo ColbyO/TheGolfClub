@@ -27,7 +27,8 @@ public class Tournaments {
     @Column(name = "standings")
     private String standings;
 
-    public Tournaments(String startDate, String endDate, double fee, double prize, String members, String standings){
+    public Tournaments(long id, String startDate, String endDate, double fee, double prize, String members, String standings){
+        this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.fee = fee;
@@ -38,6 +39,14 @@ public class Tournaments {
 
     public Tournaments() {
         
+    }
+
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getStart() {

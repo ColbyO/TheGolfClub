@@ -49,6 +49,37 @@ public class Membership {
 
     public long getId() {
         return this.id;
+<<<<<<< HEAD
+=======
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+>>>>>>> ccd7c553c6fe50fb0a5d34b806cae11ed0edaa54
     }
 
     public void setid(long id) {
