@@ -10,8 +10,13 @@ public class MembershipType {
     private String type;
     private String plan;
 
-    @OneToOne
-    private Membership member;
+    public MembershipType() {}
+
+    public MembershipType(long id, String type, String plan) {
+        this.id = id;
+        this.type = type;
+        this.plan = plan;
+    }
 
     public long getId() {
         return id;
@@ -37,11 +42,4 @@ public class MembershipType {
         this.plan = plan;
     }
 
-    public Membership getMember() {
-        return member;
-    }
-
-    public void setMember(Membership member) {
-        this.member = member;
-    }
 }

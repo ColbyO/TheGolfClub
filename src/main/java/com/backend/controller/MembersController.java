@@ -1,4 +1,4 @@
-/*package com.backend.controller;
+package com.backend.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,8 @@ public class MembersController {
     public ResponseEntity<Members> createMember(@RequestBody Members members) {
         try {
             Members _membersRepo = membersRepo
-                    .save(new Members(members.getId(), members.getFirstName(),members.getLastName(), members.getAddress(), members.getEmail(), members.getPhoneNumber(), members.getMembership()));
+                    .save(new Members(members.getId(), members.getFirstName(),members.getLastName(), members.getAddress(), members.getEmail(), members.getPhoneNumber(), 
+                    members.getMembership(), members.getCurrentTournaments(), members.getPastTournaments(), members.getUpcomingTournaments()));
             return new ResponseEntity<>(_membersRepo, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -84,6 +85,9 @@ public class MembersController {
             _members.setEmail(members.getEmail());
             _members.setPhoneNumber(members.getPhoneNumber());
             _members.setMembership(members.getMembership());
+            _members.setCurrentTournaments(members.getCurrentTournaments());
+            _members.setPastTournaments(members.getPastTournaments());
+            _members.setUpcomingTournaments(members.getUpcomingTournaments());
             return new ResponseEntity<>(membersRepo.save(_members), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -99,4 +103,4 @@ public class MembersController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-}*/
+}

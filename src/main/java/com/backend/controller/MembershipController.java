@@ -1,4 +1,4 @@
-/*package com.backend.controller;
+package com.backend.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class MembershipController {
     public ResponseEntity<Membership> createMembership(@RequestBody Membership membership) {
         try {
             Membership _membershipRepo = Repo
-                    .save(new Membership(membership.getId(), membership.getStartDate(), membership.getDuration(), membership.getMembershipType()));
+                    .save(new Membership(membership.getId(), membership.getStartDate(), membership.getDuration(), membership.getMembershipType(), membership.getMember()));
             return new ResponseEntity<>(_membershipRepo, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -80,6 +80,7 @@ public class MembershipController {
             _membership.setStartDate(membership.getStartDate());
             _membership.setDuration(membership.getDuration());
             _membership.setMembershipType(membership.getMembershipType());
+            _membership.setMember(membership.getMember());
             return new ResponseEntity<>(Repo.save(_membership), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -96,4 +97,3 @@ public class MembershipController {
         }
     }
 }
-*/

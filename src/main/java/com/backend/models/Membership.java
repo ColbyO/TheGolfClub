@@ -19,8 +19,8 @@ public class Membership {
     @Column(name = "id")
 	private long id;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/mm/yyyy")
+    @DateTimeFormat(pattern = "dd/mm/yyyy")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @Column(name = "start_date")
@@ -35,12 +35,16 @@ public class Membership {
 
     @OneToOne
     private MembershipType membershipType;
+
+    @OneToOne
+    private Members member;
     
-    public Membership(long id, LocalDate startDate, LocalTime duration, MembershipType membershipType) {
+    public Membership(long id, LocalDate startDate, LocalTime duration, MembershipType membershipType, Members member) {
         this.id = id;
         this.startDate = startDate;
         this.duration = duration;
         this.membershipType = membershipType;
+        this.member = member;
     }
 
     public Membership() {
@@ -49,37 +53,10 @@ public class Membership {
 
     public long getId() {
         return this.id;
-<<<<<<< HEAD
-=======
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
->>>>>>> ccd7c553c6fe50fb0a5d34b806cae11ed0edaa54
     }
 
     public void setid(long id) {
@@ -108,6 +85,14 @@ public class Membership {
 
     public void setMembershipType(MembershipType membershipType) {
         this.membershipType = membershipType;
+    }
+
+    public Members getMember() {
+        return member;
+    }
+
+    public void setMember(Members member) {
+        this.member = member;
     }
 
 }

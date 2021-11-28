@@ -23,7 +23,7 @@ public class UpcomingTournament {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    @Column(name = "tournamentDate")
+    @Column(name = "date")
     private LocalDate upcomingTournamentDate;
 
     @ManyToOne(targetEntity = Tournaments.class)
