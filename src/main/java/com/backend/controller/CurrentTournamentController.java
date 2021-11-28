@@ -72,7 +72,6 @@ public class CurrentTournamentController {
         Optional<CurrentTournament> currentTournamentInfo = Repo.findById(id);
         if (currentTournamentInfo.isPresent()) {
             CurrentTournament _currentTournament = currentTournamentInfo.get();
-            _currentTournament.setCurrentTournamentId(currentTournament.getCurrentTournamentId());
             _currentTournament.setCurrentTournamentDate(currentTournament.getCurrentTournamentDate());
             return new ResponseEntity<>(Repo.save(_currentTournament), HttpStatus.OK);
         } else {

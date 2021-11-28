@@ -72,7 +72,6 @@ public class PastTournamentController {
         Optional<PastTournament> pastTournamentInfo = Repo.findById(id);
         if (pastTournamentInfo.isPresent()) {
             PastTournament _pastTournament = pastTournamentInfo.get();
-            _pastTournament.setPastTournamentId(pastTournament.getPastTournamentId());
             _pastTournament.setPastTournamentDate(pastTournament.getPastTournamentDate());
             return new ResponseEntity<>(Repo.save(_pastTournament), HttpStatus.OK);
         } else {

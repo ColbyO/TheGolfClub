@@ -72,7 +72,6 @@ public class UpcomingTournamentController {
         Optional<UpcomingTournament> upcomingTournamentInfo = Repo.findById(id);
         if (upcomingTournamentInfo.isPresent()) {
             UpcomingTournament _upcomingTournament = upcomingTournamentInfo.get();
-            _upcomingTournament.setUpcomingTournamentId(upcomingTournament.getUpcomingTournamentId());
             _upcomingTournament.setUpcomingTournamentDate(upcomingTournament.getUpcomingTournamentDate());
             return new ResponseEntity<>(Repo.save(_upcomingTournament), HttpStatus.OK);
         } else {

@@ -78,7 +78,6 @@ public class MembersController {
         Optional<Members> membersInfo = membersRepo.findById(id);
         if (membersInfo.isPresent()) {
             Members _members = membersInfo.get();
-            _members.setId(members.getId());
             _members.setFirstName(members.getFirstName());
             _members.setLastName(members.getLastName());
             _members.setAddress(members.getAddress());

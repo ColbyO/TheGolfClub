@@ -75,7 +75,6 @@ public class MembershipTypeController {
         Optional<MembershipType> membershipTypeInfo = Repo.findById(id);
         if (membershipTypeInfo.isPresent()) {
             MembershipType _membershipType = membershipTypeInfo.get();
-            _membershipType.setId(membershipType.getId());
             _membershipType.setType(membershipType.getType());
             _membershipType.setPlan(membershipType.getPlan());
             return new ResponseEntity<>(Repo.save(_membershipType), HttpStatus.OK);
