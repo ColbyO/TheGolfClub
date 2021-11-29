@@ -29,16 +29,12 @@ public class UpcomingTournament {
     @ManyToOne(targetEntity = Tournaments.class)
     private List<Tournaments> tournaments;
 
-    @OneToMany
-    private List<Members> members;
-
     public UpcomingTournament() {}
 
-    public UpcomingTournament(long id, LocalDate upcomingTournamentDate, List<Tournaments> tournaments, List<Members> members) {
+    public UpcomingTournament(long id, LocalDate upcomingTournamentDate, List<Tournaments> tournaments) {
         this.id = id;
         this.upcomingTournamentDate = upcomingTournamentDate;
         this.tournaments = tournaments;
-        this.members = members;
     }
 
     public long getUpcomingTournamentId() {
@@ -65,11 +61,4 @@ public class UpcomingTournament {
         this.tournaments = tournaments;
     }
 
-    public List<Members> getMembers() {
-        return this.members;
-    }
-
-    public void setMembers(List<Members> members) {
-        this.members = members;
-    }
 }

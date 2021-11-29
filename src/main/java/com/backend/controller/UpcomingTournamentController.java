@@ -60,7 +60,7 @@ public class UpcomingTournamentController {
     public ResponseEntity<UpcomingTournament> createMembership(@RequestBody UpcomingTournament upcomingTournament) {
         try {
             UpcomingTournament _upcomingTournamentRepo = Repo
-                    .save(new UpcomingTournament(upcomingTournament.getUpcomingTournamentId(), upcomingTournament.getUpcomingTournamentDate(), upcomingTournament.getTournament(), upcomingTournament.getMembers()));
+                    .save(new UpcomingTournament(upcomingTournament.getUpcomingTournamentId(), upcomingTournament.getUpcomingTournamentDate(), upcomingTournament.getTournament()));
             return new ResponseEntity<>(_upcomingTournamentRepo, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
