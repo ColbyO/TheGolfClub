@@ -30,7 +30,7 @@ public class MembershipTypeController {
     MembershipTypeRepository Repo;
 
     @GetMapping("/membershiptype")
-	public ResponseEntity<List<MembershipType>> getAllMembers(@RequestParam(required = false) String type) {
+	public ResponseEntity<List<MembershipType>> getAllMembershipTypes(@RequestParam(required = false) String type) {
 		try {
 			List<MembershipType> membershipType = new ArrayList<MembershipType>();
 			if (type == null)
@@ -49,7 +49,7 @@ public class MembershipTypeController {
 	}
 
     @GetMapping("/membershiptype/{id}")
-	public ResponseEntity<MembershipType> getMembershipsById(@PathVariable("id") long id) {
+	public ResponseEntity<MembershipType> getMembershipTypesById(@PathVariable("id") long id) {
 		Optional<MembershipType> membershipTypeData = Repo.findById(id);
 
 		if (membershipTypeData.isPresent()) {
@@ -60,7 +60,7 @@ public class MembershipTypeController {
 	}
 
     @PostMapping("/membershiptype")
-    public ResponseEntity<MembershipType> createMembership(@RequestBody MembershipType membershipType) {
+    public ResponseEntity<MembershipType> createMembershipType(@RequestBody MembershipType membershipType) {
         try {
             MembershipType _membershipTypeRepo = Repo
                     .save(new MembershipType(membershipType.getId(), membershipType.getType(), membershipType.getPlan()));
@@ -71,7 +71,7 @@ public class MembershipTypeController {
     }
 
     @PutMapping("/membershiptype/{id}")
-    public ResponseEntity<MembershipType> updatedMembership(@PathVariable("id") long id, @RequestBody MembershipType membershipType) {
+    public ResponseEntity<MembershipType> updatedMembershipType(@PathVariable("id") long id, @RequestBody MembershipType membershipType) {
         Optional<MembershipType> membershipTypeInfo = Repo.findById(id);
         if (membershipTypeInfo.isPresent()) {
             MembershipType _membershipType = membershipTypeInfo.get();
@@ -84,7 +84,7 @@ public class MembershipTypeController {
     }
 
     @DeleteMapping("/membershiptype/{id}")
-    public ResponseEntity<MembershipType> deletedMembership(@PathVariable("id") long id){
+    public ResponseEntity<MembershipType> deletedMembershipType(@PathVariable("id") long id){
         try{
             Repo.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);

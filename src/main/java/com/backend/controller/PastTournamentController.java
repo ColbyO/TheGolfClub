@@ -31,7 +31,7 @@ public class PastTournamentController {
     PastTournamentRepository Repo;
 
     @GetMapping("/pasttournament")
-	public ResponseEntity<List<PastTournament>> getAllMembers(@RequestParam(required = false) LocalDate date) {
+	public ResponseEntity<List<PastTournament>> getAllCurrentTournaments(@RequestParam(required = false) LocalDate date) {
 		try {
 			List<PastTournament> pastTournament = new ArrayList<PastTournament>();
 			if (date == null)
@@ -46,7 +46,7 @@ public class PastTournamentController {
 	}
 
     @GetMapping("/pasttournament/{id}")
-	public ResponseEntity<PastTournament> getMembershipsById(@PathVariable("id") long id) {
+	public ResponseEntity<PastTournament> getTournamentsById(@PathVariable("id") long id) {
 		Optional<PastTournament> pastTournamentData = Repo.findById(id);
 
 		if (pastTournamentData.isPresent()) {
@@ -57,7 +57,7 @@ public class PastTournamentController {
 	}
 
     @PostMapping("/pasttournament")
-    public ResponseEntity<PastTournament> createMembership(@RequestBody PastTournament pastTournament) {
+    public ResponseEntity<PastTournament> createTournament(@RequestBody PastTournament pastTournament) {
         try {
             PastTournament _pastTournamentRepo = Repo
                     .save(new PastTournament(pastTournament.getPastTournamentId(), pastTournament.getPastTournamentDate(), pastTournament.getTournament()));
@@ -68,7 +68,7 @@ public class PastTournamentController {
     }
 
     @PutMapping("/pasttournament/{id}")
-    public ResponseEntity<PastTournament> updatedMembership(@PathVariable("id") long id, @RequestBody PastTournament pastTournament) {
+    public ResponseEntity<PastTournament> updatedTournament(@PathVariable("id") long id, @RequestBody PastTournament pastTournament) {
         Optional<PastTournament> pastTournamentInfo = Repo.findById(id);
         if (pastTournamentInfo.isPresent()) {
             PastTournament _pastTournament = pastTournamentInfo.get();
@@ -80,7 +80,7 @@ public class PastTournamentController {
     }
 
     @DeleteMapping("/pasttournament/{id}")
-    public ResponseEntity<PastTournament> deletedMembership(@PathVariable("id") long id){
+    public ResponseEntity<PastTournament> deletedTournament(@PathVariable("id") long id){
         try{
             Repo.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);

@@ -57,7 +57,7 @@ public class TournamentController {
     }
 
     @PutMapping("/tournament/{id}")
-    public ResponseEntity<Tournaments> updatedMembership(@PathVariable("id") long id, @RequestBody Tournaments tournament) {
+    public ResponseEntity<Tournaments> updatedTournament(@PathVariable("id") long id, @RequestBody Tournaments tournament) {
         Optional<Tournaments> tournamentInfo = tournamentRepo.findById(id);
         if (tournamentInfo.isPresent()) {
             Tournaments tournament1 = tournamentInfo.get();
